@@ -416,47 +416,46 @@ body{margin:0;background:var(--cream);color:var(--slate);font-family:var(--serif
   <audio id="bg-song" loop preload="auto" src="song.m4a"></audio>
   <!-- ===================== GIFT BUBBLE (persistent, all tabs) ===================== -->
   <style>
-    .gift-wrap{position:fixed;right:16px;bottom:calc(var(--tabbar) + env(safe-area-inset-bottom) + 16px);z-index:62;opacity:0;pointer-events:none;transform:translateY(6px);transition:opacity .6s ease,transform .4s ease}
-    .gift-wrap.ready{opacity:1;pointer-events:auto;transform:none}
-    .gift-fab{display:inline-flex;align-items:center;gap:8px;padding:10px 16px 10px 13px;border-radius:999px;border:1px solid var(--gold);background:var(--paper);color:var(--terra);font-family:var(--sans);font-weight:500;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;box-shadow:0 8px 22px rgba(120,104,72,.24);-webkit-tap-highlight-color:transparent;transition:transform .15s ease,background .2s ease,color .2s ease}
+    .gift-wrap{position:fixed;right:16px;bottom:calc(var(--tabbar) + env(safe-area-inset-bottom) + 16px);z-index:62;opacity:0;pointer-events:none;transition:opacity .6s ease}
+    .gift-wrap.ready{opacity:1;pointer-events:auto}
+    .gift-backdrop{position:fixed;left:0;right:0;top:0;bottom:calc(var(--tabbar) + env(safe-area-inset-bottom));background:rgba(28,24,18,.5);opacity:0;pointer-events:none;transition:opacity .28s ease;z-index:1}
+    .gift-wrap.open .gift-backdrop{opacity:1;pointer-events:auto}
+    .gift-fab{position:relative;z-index:2;display:inline-flex;align-items:center;gap:8px;padding:10px 16px 10px 13px;border-radius:999px;border:1px solid var(--gold);background:var(--paper);color:var(--terra);font-family:var(--sans);font-weight:500;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;box-shadow:0 8px 22px rgba(120,104,72,.24);-webkit-tap-highlight-color:transparent;transition:transform .15s ease,background .2s ease,color .2s ease}
     .gift-fab:hover{transform:scale(1.04)}
     .gift-fab:active{transform:scale(.95)}
     .gift-fab .gift-ico{width:19px;height:19px;flex:0 0 auto}
     @keyframes giftPulse{0%,100%{box-shadow:0 8px 22px rgba(168,95,62,.24)}50%{box-shadow:0 11px 30px rgba(168,95,62,.48)}}
     .gift-wrap.ready .gift-fab{animation:giftPulse 2.6s ease-in-out infinite}
     .gift-wrap.open .gift-fab{animation:none}
-    .gift-pop{position:absolute;right:0;bottom:calc(100% + 14px);width:min(84vw,292px);background:var(--card-solid);border:1px solid var(--gold);border-radius:15px;box-shadow:0 26px 60px -24px rgba(63,74,71,.6);opacity:0;transform:scale(.92) translateY(8px);transform-origin:bottom right;pointer-events:none;transition:opacity .22s ease,transform .22s ease}
-    .gift-pop::after{content:"";position:absolute;right:26px;bottom:-8px;width:15px;height:15px;background:var(--card-solid);border-right:1px solid var(--gold);border-bottom:1px solid var(--gold);transform:rotate(45deg)}
-    .gift-wrap.open .gift-pop{opacity:1;transform:none;pointer-events:auto}
-    .gift-pop-inner{padding:20px 18px 18px;text-align:center;max-height:min(74vh,560px);overflow-y:auto;-webkit-overflow-scrolling:touch;border-radius:15px}
-    .gift-pop-mono{font-family:var(--script);color:var(--terra);font-size:2rem;line-height:1;margin:0 0 4px}
+    .gift-pop{position:fixed;left:50%;top:calc(50% - (var(--tabbar) + env(safe-area-inset-bottom))/2);width:min(86vw,400px);background:var(--card-solid);border:1px solid var(--gold);border-radius:16px;box-shadow:0 30px 80px -20px rgba(63,74,71,.6);opacity:0;transform:translate(-50%,-50%) scale(.94);transform-origin:center;pointer-events:none;transition:opacity .26s ease,transform .26s ease;z-index:3}
+    .gift-wrap.open .gift-pop{opacity:1;transform:translate(-50%,-50%) scale(1);pointer-events:auto}
+    .gift-pop-inner{padding:24px 22px 20px;text-align:center;max-height:calc(100dvh - var(--tabbar) - 64px);overflow-y:auto;-webkit-overflow-scrolling:touch;border-radius:16px}
+    .gift-pop-mono{font-family:var(--script);color:var(--terra);font-size:2.1rem;line-height:1;margin:0 0 6px}
     .gift-pop-mono .amp{font-size:.72em}
-    .gift-pop-title{font-family:var(--serif);font-weight:500;font-size:1.14rem;color:var(--slate);margin:0 0 9px}
-    .gift-pop-text{font-family:var(--serif);font-size:.9rem;color:var(--slate-2);line-height:1.5;margin:0 0 14px}
-    .gift-tabs{display:flex;gap:4px;background:var(--terra-soft);border-radius:999px;padding:4px;margin:0 0 12px}
-    .gift-tab{flex:1;font-family:var(--sans);font-weight:500;font-size:.58rem;letter-spacing:.07em;text-transform:uppercase;color:var(--slate-2);background:none;border:0;border-radius:999px;padding:8px 4px;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:background .2s ease,color .2s ease}
+    .gift-pop-text{font-family:var(--serif);font-size:.95rem;color:var(--slate-2);line-height:1.5;margin:0 0 16px}
+    .gift-tabs{display:flex;gap:4px;background:var(--terra-soft);border-radius:999px;padding:4px;margin:0 0 13px}
+    .gift-tab{flex:1;font-family:var(--sans);font-weight:500;font-size:.6rem;letter-spacing:.07em;text-transform:uppercase;color:var(--slate-2);background:none;border:0;border-radius:999px;padding:9px 4px;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:background .2s ease,color .2s ease}
     .gift-tab.is-on{background:var(--terra);color:var(--paper)}
-    .gift-method{border:1px solid var(--line);border-radius:12px;background:var(--terra-soft);padding:4px 14px 12px}
+    .gift-method{border:1px solid var(--line);border-radius:12px;background:var(--terra-soft);padding:4px 15px 13px}
     .gift-method.is-hidden{display:none}
     .gift-rows{text-align:left}
-    .gift-row{position:relative;display:flex;justify-content:space-between;align-items:flex-start;gap:12px;width:100%;padding:9px 2px;border:0;border-top:1px solid var(--line);background:none;font:inherit;text-align:left;cursor:pointer;-webkit-tap-highlight-color:transparent}
+    .gift-row{position:relative;display:flex;justify-content:space-between;align-items:center;gap:10px;width:100%;padding:11px 2px;border:0;border-top:1px solid var(--line);background:none;font:inherit;text-align:left;cursor:pointer;-webkit-tap-highlight-color:transparent}
     .gift-row:first-child{border-top:0}
-    .gift-row .gift-k{font-family:var(--sans);font-weight:500;font-size:.56rem;letter-spacing:.12em;text-transform:uppercase;color:var(--slate-2);flex:0 0 auto;padding-top:4px}
-    .gift-row .gift-v{font-family:var(--serif);font-size:.92rem;color:var(--slate);text-align:right;line-height:1.34}
+    .gift-row .gift-k{font-family:var(--sans);font-weight:500;font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:var(--slate-2);flex:0 0 auto}
+    .gift-row .gift-v{flex:1;font-family:var(--serif);font-size:.95rem;color:var(--slate);text-align:right;line-height:1.34}
     .gift-iban{letter-spacing:.03em}
+    .gift-cico{width:15px;height:15px;flex:0 0 auto;color:var(--terra);opacity:.6;transition:opacity .2s ease}
+    .gift-row:hover .gift-cico,.gift-row:active .gift-cico{opacity:1}
     .gift-row:hover .gift-v{color:var(--terra)}
-    .gift-row:active{opacity:.6}
-    .gift-row.done::after{content:"Copied ✓";position:absolute;right:2px;top:50%;transform:translateY(-50%);background:var(--sage-d);color:#fff;font-family:var(--sans);font-size:.54rem;letter-spacing:.1em;text-transform:uppercase;padding:4px 9px;border-radius:999px}
-    .gift-row-big{flex-direction:column;align-items:center;gap:3px;padding:12px 2px}
-    .gift-row-big .gift-k{padding-top:0}
-    .gift-twint-num{font-size:1.18rem;letter-spacing:.02em}
-    .gift-hint{font-family:var(--sans);font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;color:var(--slate-2);opacity:.7;margin:10px 0 2px;text-align:center}
+    .gift-row:active{opacity:.75}
+    .gift-row.done::after{content:"Copied ✓";position:absolute;right:0;top:50%;transform:translateY(-50%);background:var(--sage-d);color:#fff;font-family:var(--sans);font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:999px}
+    .gift-hint{font-family:var(--sans);font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;color:var(--slate-2);opacity:.7;margin:11px 0 2px;text-align:center}
   </style>
   <div class="gift-wrap" id="gift-wrap">
-    <div class="gift-pop" id="gift-pop" role="dialog" aria-label="A note on gifts">
+    <div class="gift-backdrop" data-close></div>
+    <div class="gift-pop" id="gift-pop" role="dialog" aria-modal="true" aria-label="Gifts">
       <div class="gift-pop-inner">
         <div class="gift-pop-mono">U<span class="amp">&amp;</span>S</div>
-        <p class="gift-pop-title">A note on gifts</p>
         <p class="gift-pop-text">We consider your presence the most beautiful gift of all. Should you wish to accompany this moment with a special gesture, we would be deeply touched.</p>
         <div class="gift-tabs" role="tablist" aria-label="Payment method">
           <button type="button" class="gift-tab is-on" data-method="bank" role="tab" aria-selected="true">Bank transfer</button>
@@ -464,15 +463,15 @@ body{margin:0;background:var(--cream);color:var(--slate);font-family:var(--serif
         </div>
         <div class="gift-method" data-panel="bank">
           <div class="gift-rows">
-            <button type="button" class="gift-row" data-num="CH7300788000050558529"><span class="gift-k">IBAN</span><span class="gift-v gift-iban">CH73 0078 8000 0505 5852 9</span></button>
-            <button type="button" class="gift-row" data-num="Sebban Simon"><span class="gift-k">Name</span><span class="gift-v">Sebban Simon</span></button>
-            <button type="button" class="gift-row" data-num="chemin de la Laiterie 8, CH-1254 Jussy"><span class="gift-k">Address</span><span class="gift-v">chemin de la Laiterie 8, CH-1254 Jussy</span></button>
+            <button type="button" class="gift-row" data-num="CH7300788000050558529"><span class="gift-k">IBAN</span><span class="gift-v gift-iban">CH73 0078 8000 0505 5852 9</span><svg class="gift-cico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M6 15H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v1"/></svg></button>
+            <button type="button" class="gift-row" data-num="Sebban Simon"><span class="gift-k">Name</span><span class="gift-v">Sebban Simon</span><svg class="gift-cico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M6 15H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v1"/></svg></button>
+            <button type="button" class="gift-row" data-num="chemin de la Laiterie 8, CH-1254 Jussy"><span class="gift-k">Address</span><span class="gift-v">chemin de la Laiterie 8, CH-1254 Jussy</span><svg class="gift-cico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M6 15H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v1"/></svg></button>
           </div>
           <p class="gift-hint">Tap a field to copy</p>
         </div>
         <div class="gift-method is-hidden" data-panel="twint">
-          <button type="button" class="gift-row gift-row-big" data-num="+41793624600"><span class="gift-k">Twint / Revolut</span><span class="gift-v gift-twint-num">+41 79 362 46 00</span></button>
-          <p class="gift-hint">Tap to copy</p>
+          <button type="button" class="gift-row" data-num="+41793624600"><span class="gift-k">Number</span><span class="gift-v">+41 79 362 46 00</span><svg class="gift-cico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M6 15H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v1"/></svg></button>
+          <p class="gift-hint">Tap to copy · Twint or Revolut</p>
         </div>
       </div>
     </div>
@@ -669,6 +668,7 @@ var RSVP_EMAIL    = "simon.sebban14@yahoo.com";   // email fallback (used only i
 .gift-tab.is-on{background:#2B4C77;color:#fff}
 .gift-method{background:rgba(43,76,119,.06);border-color:rgba(43,76,119,.20)}
 .gift-row:hover .gift-v{color:#2B4C77}
+.gift-cico{color:#2B4C77}
 @keyframes giftPulseV2{0%,100%{box-shadow:0 8px 22px rgba(43,76,119,.24)}50%{box-shadow:0 11px 30px rgba(43,76,119,.48)}}
 .gift-wrap.ready .gift-fab{animation:giftPulseV2 2.6s ease-in-out infinite}
 </style>
@@ -763,6 +763,8 @@ var RSVP_EMAIL    = "simon.sebban14@yahoo.com";   // email fallback (used only i
     fab.setAttribute('aria-expanded', open ? 'true' : 'false');
   });
   document.addEventListener('click', function(e){ if(!wrap.contains(e.target)) close(); });
+  var giftBd = wrap.querySelector('.gift-backdrop');
+  if(giftBd){ giftBd.addEventListener('click', function(e){ e.stopPropagation(); close(); }); }
   document.addEventListener('keydown', function(e){ if(e.key==='Escape') close(); });
   Array.prototype.forEach.call(document.querySelectorAll('#gift-pop [data-num]'), function(el){
     el.addEventListener('click', function(e){
