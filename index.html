@@ -435,6 +435,14 @@ body{margin:0;background:var(--cream);color:var(--slate);font-family:var(--serif
     .gift-pay{display:flex;flex-direction:column;gap:2px;padding:11px 12px;border:1px solid var(--line);border-radius:11px;text-decoration:none;background:var(--terra-soft);margin:0 0 11px}
     .gift-pay-lbl{font-family:var(--sans);font-weight:500;font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--terra)}
     .gift-pay-num{font-family:var(--serif);font-size:1.18rem;color:var(--slate);letter-spacing:.02em}
+    .gift-bank{display:block;text-align:center}
+    .gift-rows{margin:8px 0 2px;text-align:left}
+    .gift-row{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding:4px 0;border-top:1px solid var(--line)}
+    .gift-row:first-child{border-top:0}
+    .gift-row .gift-k{font-family:var(--sans);font-weight:500;font-size:.56rem;letter-spacing:.12em;text-transform:uppercase;color:var(--slate-2);flex:0 0 auto;padding-top:4px}
+    .gift-row .gift-v{font-family:var(--serif);font-size:.9rem;color:var(--slate);text-align:right;line-height:1.32}
+    .gift-iban{letter-spacing:.03em}
+    .gift-bank .gift-copy{margin-top:10px}
     .gift-copy{font-family:var(--sans);font-weight:500;font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--terra);background:none;border:1px solid var(--gold);border-radius:999px;padding:7px 15px;cursor:pointer;transition:background .2s ease,color .2s ease,border-color .2s ease}
     .gift-copy:hover{background:var(--terra);color:var(--paper);border-color:var(--terra)}
     .gift-copy.done{background:var(--sage-d);border-color:var(--sage-d);color:#fff}
@@ -444,6 +452,15 @@ body{margin:0;background:var(--cream);color:var(--slate);font-family:var(--serif
       <div class="gift-pop-mono">U<span class="amp">&amp;</span>S</div>
       <p class="gift-pop-title">A note on gifts</p>
       <p class="gift-pop-text">We consider your presence the most beautiful gift of all. Should you wish to accompany this moment with a special gesture, we would be deeply touched.</p>
+      <div class="gift-pay gift-bank">
+        <span class="gift-pay-lbl">Bank transfer</span>
+        <div class="gift-rows">
+          <div class="gift-row"><span class="gift-k">IBAN</span><span class="gift-v gift-iban">CH73 0078 8000 0505 5852 9</span></div>
+          <div class="gift-row"><span class="gift-k">Name</span><span class="gift-v">Sebban Simon</span></div>
+          <div class="gift-row"><span class="gift-k">Address</span><span class="gift-v">chemin de la Laiterie 8,<br>CH-1254 Jussy</span></div>
+        </div>
+        <button type="button" class="gift-copy" data-num="CH7300788000050558529">Copy IBAN</button>
+      </div>
       <a class="gift-pay" href="tel:+41793624600">
         <span class="gift-pay-lbl">Twint / Revolut</span>
         <span class="gift-pay-num">+41 79 362 46 00</span>
@@ -738,8 +755,7 @@ var RSVP_EMAIL    = "simon.sebban14@yahoo.com";   // email fallback (used only i
   });
   document.addEventListener('click', function(e){ if(!wrap.contains(e.target)) close(); });
   document.addEventListener('keydown', function(e){ if(e.key==='Escape') close(); });
-  var copy = document.getElementById('gift-copy');
-  if(copy){
+  Array.prototype.forEach.call(document.querySelectorAll('.gift-copy'), function(copy){
     copy.addEventListener('click', function(e){
       e.stopPropagation();
       var num = copy.getAttribute('data-num');
@@ -747,7 +763,7 @@ var RSVP_EMAIL    = "simon.sebban14@yahoo.com";   // email fallback (used only i
       function ok(){ copy.textContent = 'Copied ✓'; copy.classList.add('done'); setTimeout(function(){ copy.textContent = label; copy.classList.remove('done'); }, 1600); }
       if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(num).then(ok).catch(ok); } else { ok(); }
     });
-  }
+  });
 })();
 </script>
 </body>
