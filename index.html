@@ -414,6 +414,53 @@ body{margin:0;background:var(--cream);color:var(--slate);font-family:var(--serif
 
   <!-- ===================== BACKGROUND SONG + INTRO GATE ===================== -->
   <audio id="bg-song" loop preload="auto" src="song.m4a"></audio>
+  <!-- ===================== GIFT BUBBLE (persistent, all tabs) ===================== -->
+  <style>
+    .gift-wrap{position:fixed;right:16px;bottom:calc(var(--tabbar) + env(safe-area-inset-bottom) + 16px);z-index:62;opacity:0;pointer-events:none;transform:translateY(6px);transition:opacity .6s ease,transform .4s ease}
+    .gift-wrap.ready{opacity:1;pointer-events:auto;transform:none}
+    .gift-fab{display:inline-flex;align-items:center;gap:8px;padding:10px 16px 10px 13px;border-radius:999px;border:1px solid var(--gold);background:var(--paper);color:var(--terra);font-family:var(--sans);font-weight:500;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;box-shadow:0 8px 22px rgba(120,104,72,.24);-webkit-tap-highlight-color:transparent;transition:transform .15s ease,background .2s ease,color .2s ease}
+    .gift-fab:hover{transform:scale(1.04)}
+    .gift-fab:active{transform:scale(.95)}
+    .gift-fab .gift-ico{width:19px;height:19px;flex:0 0 auto}
+    @keyframes giftPulse{0%,100%{box-shadow:0 8px 22px rgba(168,95,62,.24)}50%{box-shadow:0 11px 30px rgba(168,95,62,.48)}}
+    .gift-wrap.ready .gift-fab{animation:giftPulse 2.6s ease-in-out infinite}
+    .gift-wrap.open .gift-fab{animation:none}
+    .gift-pop{position:absolute;right:0;bottom:calc(100% + 14px);width:min(84vw,292px);background:var(--card-solid);border:1px solid var(--gold);border-radius:15px;box-shadow:0 26px 60px -24px rgba(63,74,71,.6);padding:20px 20px 18px;text-align:center;opacity:0;transform:scale(.92) translateY(8px);transform-origin:bottom right;pointer-events:none;transition:opacity .22s ease,transform .22s ease}
+    .gift-pop::after{content:"";position:absolute;right:26px;bottom:-8px;width:15px;height:15px;background:var(--card-solid);border-right:1px solid var(--gold);border-bottom:1px solid var(--gold);transform:rotate(45deg)}
+    .gift-wrap.open .gift-pop{opacity:1;transform:none;pointer-events:auto}
+    .gift-pop-mono{font-family:var(--script);color:var(--terra);font-size:2rem;line-height:1;margin:0 0 4px}
+    .gift-pop-mono .amp{font-size:.72em}
+    .gift-pop-title{font-family:var(--serif);font-weight:500;font-size:1.14rem;color:var(--slate);margin:0 0 9px}
+    .gift-pop-text{font-family:var(--serif);font-size:.92rem;color:var(--slate-2);line-height:1.5;margin:0 0 15px}
+    .gift-pay{display:flex;flex-direction:column;gap:2px;padding:11px 12px;border:1px solid var(--line);border-radius:11px;text-decoration:none;background:var(--terra-soft);margin:0 0 11px}
+    .gift-pay-lbl{font-family:var(--sans);font-weight:500;font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--terra)}
+    .gift-pay-num{font-family:var(--serif);font-size:1.18rem;color:var(--slate);letter-spacing:.02em}
+    .gift-copy{font-family:var(--sans);font-weight:500;font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--terra);background:none;border:1px solid var(--gold);border-radius:999px;padding:7px 15px;cursor:pointer;transition:background .2s ease,color .2s ease,border-color .2s ease}
+    .gift-copy:hover{background:var(--terra);color:var(--paper);border-color:var(--terra)}
+    .gift-copy.done{background:var(--sage-d);border-color:var(--sage-d);color:#fff}
+  </style>
+  <div class="gift-wrap" id="gift-wrap">
+    <div class="gift-pop" id="gift-pop" role="dialog" aria-label="A note on gifts">
+      <div class="gift-pop-mono">U<span class="amp">&amp;</span>S</div>
+      <p class="gift-pop-title">A note on gifts</p>
+      <p class="gift-pop-text">We consider your presence the most beautiful gift of all. Should you wish to accompany this moment with a special gesture, we would be deeply touched.</p>
+      <a class="gift-pay" href="tel:+41793624600">
+        <span class="gift-pay-lbl">Twint / Revolut</span>
+        <span class="gift-pay-num">+41 79 362 46 00</span>
+      </a>
+      <button type="button" class="gift-copy" id="gift-copy" data-num="+41793624600">Copy number</button>
+    </div>
+    <button type="button" class="gift-fab" id="gift-fab" aria-expanded="false" aria-haspopup="dialog" aria-label="A note on gifts">
+      <svg viewBox="0 0 24 24" class="gift-ico" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <rect x="3" y="8" width="18" height="4.2" rx="1"/>
+        <path d="M5 12.2V20h14v-7.8"/>
+        <path d="M12 8v12"/>
+        <path d="M12 8S10.7 4 8.6 4a2.3 2.3 0 0 0 0 4.6H12Z"/>
+        <path d="M12 8s1.3-4 3.4-4a2.3 2.3 0 0 1 0 4.6H12Z"/>
+      </svg>
+      <span>Gifts</span>
+    </button>
+  </div>
   <div class="enter-gate" id="enter-gate" role="button" tabindex="0" aria-label="Tap to open the invitation">
     <div class="enter-inner">
       <span class="monogram enter-mono">U<span class="amp">&amp;</span>S</span>
@@ -588,6 +635,16 @@ var RSVP_EMAIL    = "simon.sebban14@yahoo.com";   // email fallback (used only i
 .invite-card .rsvp{font-size:clamp(.8rem,2.8vw,.96rem)}
 .invite-card .bh{font-size:.82rem}
 @keyframes cardArrive{0%{opacity:0}100%{opacity:1}}
+/* gift bubble — navy accents to match v2 */
+.gift-fab{color:#2B4C77}
+.gift-pop-mono{color:#2B4C77}
+.gift-pop-mono .amp{color:var(--gold)}
+.gift-pay{background:rgba(43,76,119,.07);border-color:rgba(43,76,119,.22)}
+.gift-pay-lbl{color:#2B4C77}
+.gift-copy{color:#2B4C77;border-color:#2B4C77}
+.gift-copy:hover{background:#2B4C77;color:#fff;border-color:#2B4C77}
+@keyframes giftPulseV2{0%,100%{box-shadow:0 8px 22px rgba(43,76,119,.24)}50%{box-shadow:0 11px 30px rgba(43,76,119,.48)}}
+.gift-wrap.ready .gift-fab{animation:giftPulseV2 2.6s ease-in-out infinite}
 </style>
 <script>
 (function(){
@@ -654,6 +711,42 @@ var RSVP_EMAIL    = "simon.sebban14@yahoo.com";   // email fallback (used only i
       document.addEventListener(ev, function(){ if(!started) play(); }, { once:true, passive:true });
     });
     if(btn) window.addEventListener('load', function(){ setTimeout(function(){ btn.classList.add('ready','hint'); }, 800); });
+  }
+})();
+</script>
+<script>
+/* ---- persistent gift bubble: click to reveal note + Twint/Revolut ---- */
+(function(){
+  var wrap = document.getElementById('gift-wrap');
+  var fab  = document.getElementById('gift-fab');
+  if(!wrap || !fab) return;
+  var gate = document.getElementById('enter-gate');
+  function reveal(){ wrap.classList.add('ready'); }
+  if(gate){
+    var once = false;
+    var onGate = function(){ if(once) return; once = true; setTimeout(reveal, 6200); };
+    gate.addEventListener('click', onGate);
+    gate.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' ') onGate(); });
+  } else {
+    window.addEventListener('load', function(){ setTimeout(reveal, 800); });
+  }
+  function close(){ wrap.classList.remove('open'); fab.setAttribute('aria-expanded','false'); }
+  fab.addEventListener('click', function(e){
+    e.stopPropagation();
+    var open = wrap.classList.toggle('open');
+    fab.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  document.addEventListener('click', function(e){ if(!wrap.contains(e.target)) close(); });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') close(); });
+  var copy = document.getElementById('gift-copy');
+  if(copy){
+    copy.addEventListener('click', function(e){
+      e.stopPropagation();
+      var num = copy.getAttribute('data-num');
+      var label = copy.textContent;
+      function ok(){ copy.textContent = 'Copied ✓'; copy.classList.add('done'); setTimeout(function(){ copy.textContent = label; copy.classList.remove('done'); }, 1600); }
+      if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(num).then(ok).catch(ok); } else { ok(); }
+    });
   }
 })();
 </script>
