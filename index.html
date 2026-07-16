@@ -757,11 +757,14 @@ var RSVP_EMAIL    = "simon.sebban14@yahoo.com";   // email fallback (used only i
   } else {
     window.addEventListener('load', function(){ setTimeout(reveal, 800); });
   }
-  function close(){ wrap.classList.remove('open'); fab.setAttribute('aria-expanded','false'); }
+  var giftTheme = document.querySelector('meta[name="theme-color"]');
+  function setChrome(on){ if(giftTheme) giftTheme.setAttribute('content', on ? '#8B8780' : '#FBF7EF'); }
+  function close(){ wrap.classList.remove('open'); fab.setAttribute('aria-expanded','false'); setChrome(false); }
   fab.addEventListener('click', function(e){
     e.stopPropagation();
     var open = wrap.classList.toggle('open');
     fab.setAttribute('aria-expanded', open ? 'true' : 'false');
+    setChrome(open);
   });
   document.addEventListener('click', function(e){ if(!wrap.contains(e.target)) close(); });
   var giftBd = wrap.querySelector('.gift-backdrop');
