@@ -223,6 +223,7 @@ body{margin:0;background:var(--cream);color:var(--slate);font-family:var(--serif
   <symbol id="i-hotel" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="6.5" width="12" height="14" rx="1"/><path d="M9 10h2M13 10h2M9 13.2h2M13 13.2h2"/><path d="M10.5 20.5v-3.2h3v3.2"/></symbol>
   <symbol id="i-kosher" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3.5v4.4a1.5 1.5 0 0 0 3 0V3.5"/><path d="M9.5 8.3V20.5"/><path d="M16 3.5c1.5 1.1 1.5 6.4 0 8.2"/><path d="M16 11.7V20.5"/></symbol>
   <symbol id="i-rsvp" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="6" width="17" height="12.5" rx="2"/><path d="M4.2 7.4 12 13l7.8-5.6"/><path d="M12 11.6c-.7-.85-2-.4-2 .7 0 .8.95 1.35 2 2.1 1.05-.75 2-1.3 2-2.1 0-1.1-1.3-1.55-2-.7Z" fill="currentColor" stroke="none" opacity=".85"/></symbol>
+  <symbol id="i-gift" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4.2" rx="1"/><path d="M5 12.2V20h14v-7.8"/><path d="M12 8v12"/><path d="M12 8S10.7 4 8.6 4a2.3 2.3 0 0 0 0 4.6H12Z"/><path d="M12 8s1.3-4 3.4-4a2.3 2.3 0 0 1 0 4.6H12Z"/></symbol>
 </svg>
 
 <div class="bg" aria-hidden="true"></div>
@@ -264,7 +265,7 @@ body{margin:0;background:var(--cream);color:var(--slate);font-family:var(--serif
           <p class="hdate">5 Elul 5786</p>
         </div>
         <p class="venue">At the Yacht Club de Monaco</p>
-        <p class="cer">The Chuppah ceremony will take place at 5:00 PM, followed by the reception.</p>
+        <p class="cer">The Chuppah ceremony will take place at 6:00 PM, followed by the reception.</p>
         <p class="dress">Dress code — Black tie</p>
         <p class="rsvp">RSVP by July 15th</p>
       </div>
@@ -402,6 +403,34 @@ body{margin:0;background:var(--cream);color:var(--slate);font-family:var(--serif
       </div>
     </section>
 
+    <section class="panel" id="gifts" role="tabpanel" aria-labelledby="tab-gifts" tabindex="-1">
+      <p class="bh">ב״ה</p>
+      <div class="phead">
+        <h2>Gifts</h2>
+        <p>We consider your presence the most beautiful gift of all. Should you wish to accompany this moment with a special gesture, we would be deeply touched.</p>
+      </div>
+
+      <div class="gift-card">
+        <div class="gift-pop-mono">U<span class="amp">&amp;</span>S</div>
+        <div class="gift-tabs" role="tablist" aria-label="Payment method">
+          <button type="button" class="gift-tab is-on" data-method="bank" role="tab" aria-selected="true">Bank transfer</button>
+          <button type="button" class="gift-tab" data-method="twint" role="tab" aria-selected="false">Twint / Revolut</button>
+        </div>
+        <div class="gift-method" data-panel="bank">
+          <div class="gift-rows">
+            <button type="button" class="gift-row" data-num="CH7300788000050558529"><span class="gift-k">IBAN</span><span class="gift-v gift-iban">CH73 0078 8000 0505 5852 9</span><svg class="gift-cico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M6 15H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v1"/></svg></button>
+            <button type="button" class="gift-row" data-num="Sebban Simon"><span class="gift-k">Name</span><span class="gift-v">Sebban Simon</span><svg class="gift-cico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M6 15H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v1"/></svg></button>
+            <button type="button" class="gift-row" data-num="chemin de la Laiterie 8, CH-1254 Jussy"><span class="gift-k">Address</span><span class="gift-v">chemin de la Laiterie 8, CH-1254 Jussy</span><svg class="gift-cico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M6 15H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v1"/></svg></button>
+          </div>
+          <p class="gift-hint">Tap a field to copy</p>
+        </div>
+        <div class="gift-method is-hidden" data-panel="twint">
+          <button type="button" class="gift-row" data-num="+41793624600"><span class="gift-k">Number</span><span class="gift-v">+41 79 362 46 00</span><svg class="gift-cico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M6 15H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v1"/></svg></button>
+          <p class="gift-hint">Tap to copy · Twint or Revolut</p>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <nav class="tabbar" role="tablist" aria-label="Sections">
@@ -409,31 +438,18 @@ body{margin:0;background:var(--cream);color:var(--slate);font-family:var(--serif
       <button class="tabbtn" role="tab" id="tab-invitation" data-tab="invitation" aria-controls="invitation" aria-selected="true" tabindex="0"><svg class="tabico"><use href="#i-invite"/></svg><span class="tablbl">Invitation</span></button>
       <button class="tabbtn" role="tab" id="tab-hotels" data-tab="hotels" aria-controls="hotels" aria-selected="false" tabindex="-1"><svg class="tabico"><use href="#i-hotel"/></svg><span class="tablbl">Hotels</span></button>
       <button class="tabbtn" role="tab" id="tab-kosher" data-tab="kosher" aria-controls="kosher" aria-selected="false" tabindex="-1"><svg class="tabico"><use href="#i-kosher"/></svg><span class="tablbl">Kosher</span></button>
+      <button class="tabbtn" role="tab" id="tab-gifts" data-tab="gifts" aria-controls="gifts" aria-selected="false" tabindex="-1"><svg class="tabico"><use href="#i-gift"/></svg><span class="tablbl">Gifts</span></button>
       <button class="tabbtn" role="tab" id="tab-rsvp" data-tab="rsvp" aria-controls="rsvp" aria-selected="false" tabindex="-1"><svg class="tabico"><use href="#i-rsvp"/></svg><span class="tablbl">RSVP</span></button>
     </div>
   </nav>
 
   <!-- ===================== BACKGROUND SONG + INTRO GATE ===================== -->
   <audio id="bg-song" loop preload="auto" src="song.m4a"></audio>
-  <!-- ===================== GIFT BUBBLE (persistent, all tabs) ===================== -->
+  <!-- ===================== GIFTS TAB styles ===================== -->
   <style>
-    .gift-wrap{position:fixed;right:16px;bottom:calc(var(--tabbar) + env(safe-area-inset-bottom) + 16px);z-index:62;opacity:0;pointer-events:none;transition:opacity .6s ease}
-    .gift-wrap.ready{opacity:1;pointer-events:auto}
-    .gift-backdrop{position:fixed;left:0;right:0;top:0;bottom:calc(var(--tabbar) + env(safe-area-inset-bottom));background:rgba(28,24,18,.5);opacity:0;pointer-events:none;transition:opacity .28s ease;z-index:1}
-    .gift-wrap.open .gift-backdrop{opacity:1;pointer-events:auto}
-    .gift-fab{position:relative;z-index:2;display:inline-flex;align-items:center;gap:8px;padding:10px 16px 10px 13px;border-radius:999px;border:1px solid var(--gold);background:var(--paper);color:var(--terra);font-family:var(--sans);font-weight:500;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;box-shadow:0 8px 22px rgba(120,104,72,.24);-webkit-tap-highlight-color:transparent;transition:transform .15s ease,background .2s ease,color .2s ease}
-    .gift-fab:hover{transform:scale(1.04)}
-    .gift-fab:active{transform:scale(.95)}
-    .gift-fab .gift-ico{width:19px;height:19px;flex:0 0 auto}
-    @keyframes giftPulse{0%,100%{box-shadow:0 8px 22px rgba(168,95,62,.24)}50%{box-shadow:0 11px 30px rgba(168,95,62,.48)}}
-    .gift-wrap.ready .gift-fab{animation:giftPulse 2.6s ease-in-out infinite}
-    .gift-wrap.open .gift-fab{animation:none}
-    .gift-pop{position:fixed;left:50%;top:calc(50% - (var(--tabbar) + env(safe-area-inset-bottom))/2);width:min(86vw,400px);background:var(--card-solid);border:1px solid var(--gold);border-radius:16px;box-shadow:0 30px 80px -20px rgba(63,74,71,.6);opacity:0;transform:translate(-50%,-50%) scale(.94);transform-origin:center;pointer-events:none;transition:opacity .26s ease,transform .26s ease;z-index:3}
-    .gift-wrap.open .gift-pop{opacity:1;transform:translate(-50%,-50%) scale(1);pointer-events:auto}
-    .gift-pop-inner{padding:24px 22px 20px;text-align:center;max-height:calc(100dvh - var(--tabbar) - 64px);overflow-y:auto;-webkit-overflow-scrolling:touch;border-radius:16px}
-    .gift-pop-mono{font-family:var(--script);color:var(--terra);font-size:2.1rem;line-height:1;margin:0 0 6px}
+    .gift-card{max-width:420px;margin:0 auto;background:var(--card-solid);border:1px solid var(--gold);border-radius:16px;box-shadow:0 18px 50px -22px rgba(63,74,71,.4);padding:24px 22px 20px;text-align:center}
+    .gift-pop-mono{font-family:var(--script);color:var(--terra);font-size:2.1rem;line-height:1;margin:0 0 14px}
     .gift-pop-mono .amp{font-size:.72em}
-    .gift-pop-text{font-family:var(--serif);font-size:.95rem;color:var(--slate-2);line-height:1.5;margin:0 0 16px}
     .gift-tabs{display:flex;gap:4px;background:var(--terra-soft);border-radius:999px;padding:4px;margin:0 0 13px}
     .gift-tab{flex:1;font-family:var(--sans);font-weight:500;font-size:.6rem;letter-spacing:.07em;text-transform:uppercase;color:var(--slate-2);background:none;border:0;border-radius:999px;padding:9px 4px;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:background .2s ease,color .2s ease}
     .gift-tab.is-on{background:var(--terra);color:var(--paper)}
@@ -452,41 +468,6 @@ body{margin:0;background:var(--cream);color:var(--slate);font-family:var(--serif
     .gift-row.done::after{content:"Copied ✓";position:absolute;right:0;top:50%;transform:translateY(-50%);background:var(--sage-d);color:#fff;font-family:var(--sans);font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:999px}
     .gift-hint{font-family:var(--sans);font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;color:var(--slate-2);opacity:.7;margin:11px 0 2px;text-align:center}
   </style>
-  <div class="gift-wrap" id="gift-wrap">
-    <div class="gift-backdrop" data-close></div>
-    <div class="gift-pop" id="gift-pop" role="dialog" aria-modal="true" aria-label="Gifts">
-      <div class="gift-pop-inner">
-        <div class="gift-pop-mono">U<span class="amp">&amp;</span>S</div>
-        <p class="gift-pop-text">We consider your presence the most beautiful gift of all. Should you wish to accompany this moment with a special gesture, we would be deeply touched.</p>
-        <div class="gift-tabs" role="tablist" aria-label="Payment method">
-          <button type="button" class="gift-tab is-on" data-method="bank" role="tab" aria-selected="true">Bank transfer</button>
-          <button type="button" class="gift-tab" data-method="twint" role="tab" aria-selected="false">Twint / Revolut</button>
-        </div>
-        <div class="gift-method" data-panel="bank">
-          <div class="gift-rows">
-            <button type="button" class="gift-row" data-num="CH7300788000050558529"><span class="gift-k">IBAN</span><span class="gift-v gift-iban">CH73 0078 8000 0505 5852 9</span><svg class="gift-cico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M6 15H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v1"/></svg></button>
-            <button type="button" class="gift-row" data-num="Sebban Simon"><span class="gift-k">Name</span><span class="gift-v">Sebban Simon</span><svg class="gift-cico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M6 15H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v1"/></svg></button>
-            <button type="button" class="gift-row" data-num="chemin de la Laiterie 8, CH-1254 Jussy"><span class="gift-k">Address</span><span class="gift-v">chemin de la Laiterie 8, CH-1254 Jussy</span><svg class="gift-cico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M6 15H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v1"/></svg></button>
-          </div>
-          <p class="gift-hint">Tap a field to copy</p>
-        </div>
-        <div class="gift-method is-hidden" data-panel="twint">
-          <button type="button" class="gift-row" data-num="+41793624600"><span class="gift-k">Number</span><span class="gift-v">+41 79 362 46 00</span><svg class="gift-cico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M6 15H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v1"/></svg></button>
-          <p class="gift-hint">Tap to copy · Twint or Revolut</p>
-        </div>
-      </div>
-    </div>
-    <button type="button" class="gift-fab" id="gift-fab" aria-expanded="false" aria-haspopup="dialog" aria-label="A note on gifts">
-      <svg viewBox="0 0 24 24" class="gift-ico" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <rect x="3" y="8" width="18" height="4.2" rx="1"/>
-        <path d="M5 12.2V20h14v-7.8"/>
-        <path d="M12 8v12"/>
-        <path d="M12 8S10.7 4 8.6 4a2.3 2.3 0 0 0 0 4.6H12Z"/>
-        <path d="M12 8s1.3-4 3.4-4a2.3 2.3 0 0 1 0 4.6H12Z"/>
-      </svg>
-      <span>Gifts</span>
-    </button>
-  </div>
   <div class="enter-gate" id="enter-gate" role="button" tabindex="0" aria-label="Tap to open the invitation">
     <div class="enter-inner">
       <span class="monogram enter-mono">U<span class="amp">&amp;</span>S</span>
@@ -544,6 +525,7 @@ var RSVP_EMAIL    = "simon.sebban14@yahoo.com";   // email fallback (used only i
     invitation: document.getElementById('invitation'),
     hotels: document.getElementById('hotels'),
     kosher: document.getElementById('kosher'),
+    gifts: document.getElementById('gifts'),
     rsvp: document.getElementById('rsvp')
   };
   function activate(name, focus){
@@ -661,8 +643,7 @@ var RSVP_EMAIL    = "simon.sebban14@yahoo.com";   // email fallback (used only i
 .invite-card .rsvp{font-size:clamp(.8rem,2.8vw,.96rem)}
 .invite-card .bh{font-size:.82rem}
 @keyframes cardArrive{0%{opacity:0}100%{opacity:1}}
-/* gift bubble — navy accents to match v2 */
-.gift-fab{color:#2B4C77}
+/* gifts tab — navy accents to match v2 */
 .gift-pop-mono{color:#2B4C77}
 .gift-pop-mono .amp{color:var(--gold)}
 .gift-tabs{background:rgba(43,76,119,.08)}
@@ -670,8 +651,6 @@ var RSVP_EMAIL    = "simon.sebban14@yahoo.com";   // email fallback (used only i
 .gift-method{background:rgba(43,76,119,.06);border-color:rgba(43,76,119,.20)}
 .gift-row:hover .gift-v{color:#2B4C77}
 .gift-cico{color:#2B4C77}
-@keyframes giftPulseV2{0%,100%{box-shadow:0 8px 22px rgba(43,76,119,.24)}50%{box-shadow:0 11px 30px rgba(43,76,119,.48)}}
-.gift-wrap.ready .gift-fab{animation:giftPulseV2 2.6s ease-in-out infinite}
 </style>
 <script>
 (function(){
@@ -742,37 +721,10 @@ var RSVP_EMAIL    = "simon.sebban14@yahoo.com";   // email fallback (used only i
 })();
 </script>
 <script>
-/* ---- persistent gift bubble: click to reveal note + Twint/Revolut ---- */
+/* ---- gifts tab: tap-to-copy + payment-method toggle ---- */
 (function(){
-  var wrap = document.getElementById('gift-wrap');
-  var fab  = document.getElementById('gift-fab');
-  if(!wrap || !fab) return;
-  var gate = document.getElementById('enter-gate');
-  function reveal(){ wrap.classList.add('ready'); }
-  if(gate){
-    var once = false;
-    var onGate = function(){ if(once) return; once = true; setTimeout(reveal, 6200); };
-    gate.addEventListener('click', onGate);
-    gate.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' ') onGate(); });
-  } else {
-    window.addEventListener('load', function(){ setTimeout(reveal, 800); });
-  }
-  var giftTheme = document.querySelector('meta[name="theme-color"]');
-  function setChrome(on){ if(giftTheme) giftTheme.setAttribute('content', on ? '#8B8780' : '#FBF7EF'); }
-  function close(){ wrap.classList.remove('open'); fab.setAttribute('aria-expanded','false'); setChrome(false); }
-  fab.addEventListener('click', function(e){
-    e.stopPropagation();
-    var open = wrap.classList.toggle('open');
-    fab.setAttribute('aria-expanded', open ? 'true' : 'false');
-    setChrome(open);
-  });
-  document.addEventListener('click', function(e){ if(!wrap.contains(e.target)) close(); });
-  var giftBd = wrap.querySelector('.gift-backdrop');
-  if(giftBd){ giftBd.addEventListener('click', function(e){ e.stopPropagation(); close(); }); }
-  document.addEventListener('keydown', function(e){ if(e.key==='Escape') close(); });
-  Array.prototype.forEach.call(document.querySelectorAll('#gift-pop [data-num]'), function(el){
-    el.addEventListener('click', function(e){
-      e.stopPropagation();
+  Array.prototype.forEach.call(document.querySelectorAll('#gifts [data-num]'), function(el){
+    el.addEventListener('click', function(){
       var val = el.getAttribute('data-num');
       function ok(){ el.classList.add('done'); setTimeout(function(){ el.classList.remove('done'); }, 1400); }
       if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(val).then(ok).catch(ok); } else { ok(); }
@@ -780,8 +732,7 @@ var RSVP_EMAIL    = "simon.sebban14@yahoo.com";   // email fallback (used only i
   });
   var giftTabs = document.querySelectorAll('.gift-tab');
   Array.prototype.forEach.call(giftTabs, function(tab){
-    tab.addEventListener('click', function(e){
-      e.stopPropagation();
+    tab.addEventListener('click', function(){
       var m = tab.getAttribute('data-method');
       Array.prototype.forEach.call(giftTabs, function(t){ var on = t === tab; t.classList.toggle('is-on', on); t.setAttribute('aria-selected', on ? 'true' : 'false'); });
       Array.prototype.forEach.call(document.querySelectorAll('.gift-method'), function(p){ p.classList.toggle('is-hidden', p.getAttribute('data-panel') !== m); });
